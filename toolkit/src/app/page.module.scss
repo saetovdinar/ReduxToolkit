@@ -1,0 +1,26 @@
+.cont {
+  text-align: center;
+  padding-top: 10px;
+}
+.search {
+ 
+  width: 350px;
+}
+.main_cont {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 70px;
+  padding: 40px;
+}
+.cards_cont {
+  position: relative;
+  
+}
+.heart {
+  position: absolute;
+  bottom: -55px;
+  left: 100px;
+  cursor: pointer;
+  color: red;
+  z-index: 1;
+}
