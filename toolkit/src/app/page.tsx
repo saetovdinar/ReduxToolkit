@@ -3,7 +3,7 @@ import Link from 'next/link'
 import {HeartIcon} from '@/svg/heart';
 import { Input, Card, Button, Image } from 'antd';
 import styles from "./page.module.scss";
-import { RootState } from '../redux/store/store';
+import { RootState, AppDispatch } from '../redux/store/store';
 import { useSelector, useDispatch } from 'react-redux';
 import {setFavorite} from '../redux/features/favorite/favoriteSlice';
 import { setSearch, fetchSearch } from '../redux/features/search/searchSlice';
@@ -14,15 +14,15 @@ export default function Home() {
   const movies = useSelector((state: RootState) => state.search.movies);
   const loading = useSelector((state: RootState) => state.search.isLoading);
 
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch= useDispatch();
   
-  const addToFavorite = (movie: any) => dispatch(setFavorite(movie));
+  const addToFavorite = (movie: {imdbID: string}) => dispatch(setFavorite(movie));
   
     
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => dispatch(setSearch(e.target.value));
   const getMovies =  () => {
     try{
-      dispatch(fetchSearch(search));
+      dispatch(fetchSearch(search) );
   
     } catch (error) {
       console.log(error)
@@ -31,7 +31,7 @@ export default function Home() {
   }
   const getMovie = (id: string) => {
     try{
-      dispatch(fetchMovieId(id));
+      dispatch(fetchMovieId(id) );
   
     } catch (error) {
       console.log(error)

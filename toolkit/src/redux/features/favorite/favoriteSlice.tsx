@@ -3,11 +3,15 @@ import {createSlice} from '@reduxjs/toolkit';
 
 
 
-
+interface favoriteProps {
+    Poster: string;
+    Title: string;
+    imdbID: string;
+}
 
 export interface favoriteState {
     isLoading: boolean;
-    favotiteStore: object[];
+    favotiteStore: favoriteProps[];
 };
  
 

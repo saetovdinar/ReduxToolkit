@@ -10,11 +10,16 @@ export const fetchSearch = createAsyncThunk(
     }
 );
 
+interface MovieProps {
+    Poster: string;
+    Title: string;
+    imdbID: string;
 
+}
 
 export interface SearchState {
     value: string;
-    movies: [];
+    movies: MovieProps[];
     isLoading: boolean;
 }
 
@@ -35,7 +40,7 @@ export const searchSlice = createSlice({
     },
     extraReducers: (builder) => {
       builder
-        .addCase(fetchSearch.fulfilled, (state: SearchState, action: any) => {
+        .addCase(fetchSearch.fulfilled, (state: SearchState, action: {payload: {Search: []}}) => {
           state.movies = action.payload.Search;
           state.isLoading = true;
         })

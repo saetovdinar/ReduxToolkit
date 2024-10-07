@@ -11,16 +11,37 @@ export const fetchMovieId = createAsyncThunk(
     }
 );
 
+interface selectedMovieProps {
+    Poster: string;
+    Title: string;
 
+    Year: string;
+    imdbID: string;
+    Genre: string;
+    Director: string;
+    Actors: string;
+    Runtime: string;
+    imdbRating: string;
+}
 export interface movieState {
     isLoading: boolean;
-    selectedMovie: any;
+    selectedMovie: selectedMovieProps;
 };
  
 
 
 const initState: movieState = {
-    selectedMovie: {},
+    selectedMovie: {
+      Poster: '',
+      Title: '',
+      Genre: '',
+      Director: '',
+      Actors: '',
+      Runtime: '',
+      imdbRating: '',
+      Year: '',
+      imdbID: '',
+    },
     isLoading: false
 }
 
@@ -33,7 +54,7 @@ export const movieSlice = createSlice({
     },
     extraReducers: (builder) => {
       builder
-        .addCase(fetchMovieId.fulfilled, (state: movieState, action: any) => {
+        .addCase(fetchMovieId.fulfilled, (state: movieState, action: {payload: selectedMovieProps}) => {
             state.selectedMovie = action.payload;
             state.isLoading = true;
         })

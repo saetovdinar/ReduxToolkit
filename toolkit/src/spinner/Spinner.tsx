@@ -1,5 +1,9 @@
 import styles from './Spinner.module.scss';
-export default function Spinner({ children, isLoading, height }: any) {
+export default function Spinner({ children, isLoading, height }: {
+	children: React.ReactNode;
+	isLoading: boolean;
+	height?: string;
+}) {
 	return (
 		<>
 			{!isLoading ? (
